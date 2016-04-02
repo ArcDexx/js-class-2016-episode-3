@@ -17,7 +17,7 @@ appModule.component('layout', {
 });
 
 appModule.controller('HelloController',
-  [function () {
+   ['$timeout', function ($timeout) {
     this.names = [];
 
     this.addName = function () {
@@ -25,13 +25,9 @@ appModule.controller('HelloController',
       this.name = '';
       console.log('added a name:', this);
 
-      // remove it after one second
-      ////////////////////////////////////////
-      // XXXX BAAAD NOT ANGULAR !!!!
-      // DON'T WORK !
-      // FIX ME !
-      setTimeout(() => this.names.shift(), 1000);
-      ////////////////////////////////////////
+
+      $timeout(() => this.names.shift(), 1000);
+
     };
   }]
 );
